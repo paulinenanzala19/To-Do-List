@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: bisque;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .todo{
+            overflow: hidden;
+            box-shadow: 0 0 10px;
+            padding: 10px;
+
+        }
+        .todo-header{
+            padding-bottom: 10px;
+            color: black;
+        }
+        #task-input{
+            width:70% ;
+            padding: 10px;
+            margin: 5px;
+           
+        }
+        #add{
+            width: 35%;
+            padding: 6px;
+            margin: 5px;
+            cursor: pointer;
+            outline: none;
+        }
+        #tasks{
+            list-style: none;
+            padding: opx;
+            margin: opx;
+        }
+        .task-item{
+            justify-content:space-between ;
+            align-items: center;
+            display: flex;
+            padding: 10px;
+        }
+        .task-item-span{
+            flex-grow: 1;
+            margin-right: 10px;
+
+        }
+        .task-item-button{
+            outline: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="todo">
+        <div class="todo-header">
+            TO DO LIST
+
+        </div>
+        <div>
+            <input type="text" id="task-input" placeholder="Enter task">
+            <button id="add" onclick="addTask()">Add Task</button>
+        </div>
+        <ul id="tasks"></ul>
+ 
+    </div>
+    <!-- <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          loadTasks();
+        });
+    
+        function addTask() {
+          const taskInput = document.getElementById('task-input');
+          const taskText = taskInput.value.trim();
+    
+          if (taskText === '') {
+            alert('Please enter a valid task.');
+            return;
+          }
+    
+          const tasksList = document.getElementById('tasks');
+    
+          const taskItem = document.createElement('li');
+          taskItem.className = 'task-item';
+          taskItem.innerHTML = `
+            <span>${taskText}</span>
+            <button onclick="removeTask(this)">Remove</button>
+          `;
+    
+          tasksList.appendChild(taskItem);
+          taskInput.value = '';
+    
+          // Save tasks to local storage
+          saveTasks();
+        }
+    
+        function removeTask(button) {
+          const taskItem = button.parentElement;
+          const tasksList = document.getElementById('tasks');
+          tasksList.removeChild(taskItem);
+    
+          // Save tasks to local storage after removal
+          saveTasks();
+        }
+    
+        function saveTasks() {
+          const tasksList = document.getElementById('tasks');
+          const tasks = Array.from(tasksList.children).map(taskItem => taskItem.querySelector('span').innerText);
+    
+          // Save tasks array to local storage
+          localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+    
+        function loadTasks() {
+          const tasksList = document.getElementById('tasks');
+          const savedTasks = localStorage.getItem('tasks');
+    
+          if (savedTasks) {
+            const tasks = JSON.parse(savedTasks); 
+    
+            tasks.forEach(taskText => {
+              const taskItem = document.createElement('li');
+              taskItem.className = 'task-item';
+              taskItem.innerHTML = `
+                <span>${taskText}</span>
+                <button onclick="removeTask(this)">Remove</button>
+              `;
+    
+              tasksList.appendChild(taskItem);
+            });
+          }
+        }
+     </script> -->
+    
+
+    
+    <script>
+        document.addEventListener('DOMcontentloaded', function(){
+            loadTasks();
+        });
+        function addTask(){
+            const taskInput= document.getElementById('task-input ');
+            const taskText = taskInput.value.trim();
+
+            if (taskText=== ''){
+                alert('You entered an empty text');
+                return;
+            }
+            const tasksList = document.getElementById('tasks');
+            const taskItem=document.createElement('li');
+            taskItem.className='task-item';
+
+            taskItem.innerHTML=
+            `<span> ${taskItem}</span>
+            <button onClick="removeTask(this)">Remove</button>`;
+
+            tasksList.appendChild(taskItem);
+            taskInput.value= '';
+
+            saveTasks();
+
+        }
+        function removeTask(button){
+            const taskItem=button.parentElement;
+            const tasksList=document.getElementById('tasks');
+            tasksList.removeChild(taskItem);
+
+            saveTasks();
+        }
+        function saveTasks(){
+            const tasksList=document.getElementById('tasks');
+            const tasks=Array.from(tasksList.children).map(taskItem=>taskItem.querySelector('span').innerText);
+
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+        }
+
+        function loadTasks(){
+            const tasksList=document.getElementById('tasks');
+            const savedTasks=localStorage.getItem('tasks');
+
+            if(savedTasks){
+                const tasks=JSON.parse(savedTasks);
+                tasks.forEach(taskText => {
+                    const taskItem=document.createElement('li');
+                    taskItem.className='task-item';
+                    taskItem.innerHTML=`
+                    <span>${taskText}</span>
+                    <button onClick="removeTask(this)">Remove</button>`;
+                    
+                    tasksList.appendChild(taskItem);
+                    
+                });
+            }
+        }
+
+        
+    </script>
+    
+</body>
+</html>
